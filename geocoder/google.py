@@ -268,12 +268,12 @@ class GoogleQuery(MultipleResultsQuery):
         else:
             return self.rate_limited_get_for_dev(*args, **kwargs)
 
-    @ratelim.greedy(2500, 60 * 60 * 24)
+    @ratelim.greedy(25000000000, 60 * 60 * 24)
     @ratelim.greedy(10, 1)
     def rate_limited_get_for_dev(self, *args, **kwargs):
         return super(GoogleQuery, self).rate_limited_get(*args, **kwargs)
 
-    @ratelim.greedy(100000, 60 * 60 * 24)  # Google for Work daily limit
+    @ratelim.greedy(10000000000000, 60 * 60 * 24)  # Google for Work daily limit
     @ratelim.greedy(50, 1)  # Google for Work limit per second
     def rate_limited_get_for_work(self, *args, **kwargs):
         return super(GoogleQuery, self).rate_limited_get(*args, **kwargs)
